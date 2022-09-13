@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 // define Node Type :
 
@@ -76,4 +78,65 @@ func (l LinkedList) getNode(index int) (*Node, string) {
 		iterator = iterator.next
 	}
 	return response, ""
+}
+
+func (l *LinkedList) replaceNode(index int, newNode *Node) {
+	if l.isEmpty() || index > l.size || index < 0 {
+		return
+	}
+	iterator := l.head
+	itr := 0
+	for iterator != nil {
+		if itr == index {
+			iterator.data = newNode.data
+			return
+		}
+		itr++
+		iterator = iterator.next
+	}
+}
+
+func (l *LinkedList) insertAfter(index int, newNode *Node) {
+	if l.isEmpty() || index > l.size || index < 0 {
+		return
+	}
+	iterator := l.head
+	itr := 0
+	for iterator != nil {
+		if itr == index {
+			// insert After the current node :
+			tempNode := iterator.next
+			iterator.next = newNode
+			newNode.next = tempNode
+			l.size++
+			return
+		}
+		itr++
+		iterator = iterator.next
+	}
+}
+
+func (l *LinkedList) insertBefor(index int, newNode *Node) {
+	if l.isEmpty() || index > l.size || index < 0 {
+		return
+	}
+	iterator := l.head
+	itr := 0
+	for itr != index-1 {
+		itr++
+		iterator = iterator.next
+	}
+	// current iterator is the target
+	tempNode := iterator.next
+	iterator.next = newNode
+	newNode.next = tempNode
+	l.size++
+	return
+}
+
+func (l *LinkedList) deleteHader() {
+	tempNode := l.head
+	l.head = tempNode.next
+	l.size--
+	return
 }
