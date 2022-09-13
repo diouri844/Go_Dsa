@@ -31,3 +31,12 @@
 <h3 id="delete-the-head-node">✔️ Delete the head node :</h3>
 <pre><code class="language-go">    myList.deleteHader()
 </code></pre>
+<h3 id="delete-node-by-index">✔️ Delete node by index  :</h3>
+<pre><code class="language-go">    myList.deleteNode(index)
+</code></pre>
+<h3 id="delete-node-after-node">✔️ Delete node after node-target :</h3>
+<pre><code class="language-go">    myList.deleteAfter(node)
+</code></pre>
+<h3 id="convert-to-array">✔️ Convert to array : </h3>
+<pre><code class="language-go"> array := myList.toArray()
+</code></pre>

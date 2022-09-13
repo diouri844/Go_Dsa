@@ -140,3 +140,49 @@ func (l *LinkedList) deleteHader() {
 	l.size--
 	return
 }
+
+func (l *LinkedList) deleteNode(index int) {
+	if l.isEmpty() || index > l.size || index < 0 {
+		return
+	}
+	iterator := l.head
+	itr := 0
+	for itr != index-1 {
+		itr++
+		iterator = iterator.next
+	}
+	// the next of the current node is the one to delete :
+	todelete := iterator.next
+	iterator.next = todelete.next
+	l.size--
+	return
+}
+
+func (l *LinkedList) deleteAfter(nodeTarget *Node) {
+	if l.isEmpty() {
+		return
+	}
+	iterator := l.head
+	itr := 0
+	for iterator != nodeTarget {
+		iterator = iterator.next
+		itr++
+	}
+	// current node is the target one :
+	todelete := iterator.next
+	iterator.next = todelete.next
+	l.size--
+	return
+}
+
+func (l LinkedList) toArray() []string {
+	var array []string = make([]string, l.size)
+	iterator := l.head
+	itr := 0
+	for iterator != nil {
+		array[itr] = iterator.data
+		itr++
+		iterator = iterator.next
+	}
+	return array
+}
